@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>QrFox</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoxQR - Premium Image to QR Converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🦊</div>
+                <span>FoxQR</span>
+            </div>
+        </header>
+
+        <section class="hero">
+            <h1>Convert Images to High-Quality QR Codes</h1>
+            <p>Our smart fox technology handles larger images while maintaining perfect scanability.</p>
+        </section>
+
+        <div class="converter-container">
+            <div class="upload-section">
+                <h2 class="preview-title">
+                    <svg viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M19 13a1 1 0 0 0-1 1v.38l-1.48-1.48a2.79 2.79 0 0 0-3.93 0l-.7.7-2.48-2.48a2.85 2.85 0 0 0-3.93 0L4 12.6V7a1 1 0 0 1 1-1h7a1 1 0 1 0 0-2H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-5a1 1 0 0 0-1-1ZM5 20a1 1 0 0 1-1-1v-3.57l2.9-2.9a.79.79 0 0 1 1.09 0l3.17 3.17 4.3 4.3H5Zm13-1a1 1 0 0 1-.18.53L13.31 15l.7-.7a.77.77 0 0 1 1.1 0L18 17.22V19Zm0-5.14L17.09 12a.79.79 0 0 0-1.09 0l-.51.51.71.7ZM13 9a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z"/>
+                    </svg>
+                    Upload Image
+                </h2>
+                <div class="upload-area" id="dropArea">
+                    <div class="upload-icon">🖼</div>
+                    <p><strong>Drag & drop your image here</strong></p>
+                    <p>or</p>
+                    <button class="btn btn-outline" id="uploadBtn">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="var(--fox-orange)" style="margin-right: 8px;">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                        </svg>
+                        Select Image
+                    </button>
+                    <input type="file" id="fileInput" accept="image/*">
+                </div>
+                <img id="imagePreview" class="image-preview" alt="Preview">
+            </div>
+
+            <div class="preview-container">
+                <h2 class="preview-title">
+                    <svg viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm0 2v14h14V5H5zm3 2h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/>
+                    </svg>
+                    Your QR Code
+                </h2>
+                <div class="qr-code-container">
+                    <canvas id="qrCode"></canvas>
+                </div>
+                
+                <div class="quality-controls">
+                    <label for="qualityRange">Quality Optimization:</label>
+                    <input type="range" id="qualityRange" class="quality-slider" min="1" max="10" value="7">
+                    <div class="quality-labels">
+                        <span>Smaller Size</span>
+                        <span>Better Quality</span>
+                    </div>
+                </div>
+                
+                <div class="actions">
+                    <button class="btn btn-primary" id="generateBtn">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="white" style="margin-right: 8px;">
+                            <path d="M20 11V7.8c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311C17.72 3 16.88 3 15.2 3H8.8c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.311 1.311C4 5.28 4 6.12 4 7.8v8.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311C6.28 21 7.12 21 8.8 21H12m5-10h-5m5 4h-5m-5-4h.01M8 15h.01M18 3v6m0 0-3-3m3 3-3 3"/>
+                        </svg>
+                        Generate QR Code
+                    </button>
+                    <button class="btn btn-outline" id="downloadBtn" disabled>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="var(--fox-orange)" style="margin-right: 8px;">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                        </svg>
+                        Download
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Smart Compression</h3>
+                <p>Our fox algorithm automatically optimizes images for perfect QR conversion.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🖼</div>
+                <h3>High Resolution</h3>
+                <p>Handles images up to 5MB while maintaining excellent scanability.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Private Processing</h3>
+                <p>All conversion happens in your browser - your images never leave your device.</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2023 FoxQR - The Smart QR Generator | Crafted with 🦊 magic</p>
+        </footer>
+    </div>
+
+    <div class="fox-mascot" id="foxMascot" title="Hi! I'm Foxy, your QR assistant!">🦊</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
